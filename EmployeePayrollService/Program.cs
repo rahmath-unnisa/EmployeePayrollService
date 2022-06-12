@@ -6,7 +6,7 @@ class program
     {
         EmployeeRepository repository = new EmployeeRepository();
         bool check = true;
-        Console.WriteLine("1.Add Employee data\n2.Retrive Employee data \n3.Update Salary \n4.Deleting Employee Details \n5.Retrive employee details by data range");
+        Console.WriteLine("1.Add Employee data\n2.Retrive Employee data \n3.Update Salary \n4.Deleting Employee Details \n5.Retrive employee details by data range \n6. Find sum avg");
         while (check)
         {
             Console.WriteLine("Choose an option");
@@ -53,6 +53,16 @@ class program
                         {
                             Console.WriteLine(data.EmpId + " " + data.Name + " " + data.Salary + data.Startdate + " " + data.Gender + " " + data.PhoneNumber + " " + data.Department + " " + data.Deduction + " " + data.Taxable_Pay + " " + data.Net_Pay);
                         }
+                    }
+                    break;
+                case 6:
+                    EmployeeDetails emp = new EmployeeDetails();
+                    Console.WriteLine("Enter the gender");
+                    emp.Gender = Console.ReadLine();
+                    repository.FindSumAvgMaxMin(emp);
+                    if (emp.Gender == "M")
+                    {
+                        Console.WriteLine(emp.Salary);
                     }
                     break;
             }
