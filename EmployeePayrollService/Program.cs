@@ -6,7 +6,7 @@ class program
     {
         EmployeeRepository repository = new EmployeeRepository();
         bool check = true;
-        Console.WriteLine("1.Add Employee data\n2.Retrive Employee data \n3.Update Salary");
+        Console.WriteLine("1.Add Employee data\n2.Retrive Employee data \n3.Update Salary \n4.Deleting Employee Details");
         while (check)
         {
             Console.WriteLine("Choose an option");
@@ -35,6 +35,12 @@ class program
                     detail.EmpId = 1;
                     detail.Salary = 30000;
                     repository.UpdateEmployeeSalary(detail);
+                    break;
+                case 4:
+                    EmployeeDetails employee = new EmployeeDetails();
+                    employee.EmpId = 1;
+                    employee.Name = "Tanveer";
+                    repository.DeleteEmployeeDetails(employee);
                     break;
             }
         }

@@ -93,5 +93,24 @@ namespace EmployeePayrollService
                 return false;
             }
         }
+        public void DeleteEmployeeDetails(EmployeeDetails emp)
+        {
+            Connection();
+            SqlCommand command = new SqlCommand("spDeleteEmployee", con);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@Id", emp.EmpId);
+            command.Parameters.AddWithValue("@Name", emp.Name);
+            con.Open();
+            int result = command.ExecuteNonQuery();
+            con.Close();
+            if (result >= 1)
+            {
+                Console.WriteLine("Employee details deleted successfully");
+            }
+            else
+            {
+                Console.WriteLine("Failed to delete employee details");
+            }
+        }
     }
 }
