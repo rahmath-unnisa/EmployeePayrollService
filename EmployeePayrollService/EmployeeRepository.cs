@@ -74,5 +74,24 @@ namespace EmployeePayrollService
             }
             return EmployeeList;
         }
+        public bool UpdateEmployeeSalary(EmployeeDetails obj)
+        {
+            Connection();
+            SqlCommand com = new SqlCommand("UpdateEmployee", con);
+            com.CommandType = CommandType.StoredProcedure;
+            com.Parameters.AddWithValue("@Id", obj.EmpId);
+            com.Parameters.AddWithValue("@Salary", obj.Salary);
+            con.Open();
+            int i = com.ExecuteNonQuery();
+            con.Close();
+            if (i >= 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
