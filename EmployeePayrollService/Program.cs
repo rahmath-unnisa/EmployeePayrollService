@@ -6,7 +6,7 @@ class program
     {
         EmployeeRepository repository = new EmployeeRepository();
         bool check = true;
-        Console.WriteLine("1.Add Employee data\n2.Retrive Employee data \n3.Update Salary \n4.Deleting Employee Details");
+        Console.WriteLine("1.Add Employee data\n2.Retrive Employee data \n3.Update Salary \n4.Deleting Employee Details \n5.Retrive employee details by data range");
         while (check)
         {
             Console.WriteLine("Choose an option");
@@ -41,6 +41,19 @@ class program
                     employee.EmpId = 1;
                     employee.Name = "Tanveer";
                     repository.DeleteEmployeeDetails(employee);
+                    break;
+                case 5:
+                    List<EmployeeDetails> employees = repository.RetrieveEmployeeData();
+                    Console.WriteLine("Enter date: ");
+                    DateTime date = Convert.ToDateTime(Console.ReadLine());
+                    repository.RetrieveEmployeesVByDataRange(date);
+                    foreach (EmployeeDetails data in employees)
+                    {
+                        if (data.Startdate.Equals(date))
+                        {
+                            Console.WriteLine(data.EmpId + " " + data.Name + " " + data.Salary + data.Startdate + " " + data.Gender + " " + data.PhoneNumber + " " + data.Department + " " + data.Deduction + " " + data.Taxable_Pay + " " + data.Net_Pay);
+                        }
+                    }
                     break;
             }
         }

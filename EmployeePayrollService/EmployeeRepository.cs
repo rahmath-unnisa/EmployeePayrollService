@@ -112,5 +112,23 @@ namespace EmployeePayrollService
                 Console.WriteLine("Failed to delete employee details");
             }
         }
+        public bool RetrieveEmployeesVByDataRange(DateTime date)
+        {
+            Connection();
+            SqlCommand command = new SqlCommand("spRetrieveByDataRange", con);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@Startdate", date);
+            con.Open();
+            int result = command.ExecuteNonQuery();
+            con.Close();
+            if (result >= 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
